@@ -16,6 +16,7 @@ public class GamblerSimulation
 		totalAmount=gamePlayForDays(noOfDays, availableBalance);
 		System.out.println("Amount won after "+ noOfDays+" days of play:"+totalAmount);
 		gameForMonth();
+		luckyAndUnluckyDay();
 
 	}
 	public static int playGame(int availableBalance)
@@ -62,6 +63,25 @@ public class GamblerSimulation
 		}
 		return availableBalance;
 
+	}
+	public static void luckyAndUnluckyDay() {
+		int noOfDays=30;
+		int amountInADay=0;
+		String luckyDays="";
+		String unLuckyDays="";
+		for(int day=1; day<=noOfDays;day++) {
+			amountInADay=gameResign(TOTAL_STAKE);
+			if(amountInADay==TOTAL_STAKE+0.5*TOTAL_STAKE) {
+				luckyDays+=day+" ";
+			}
+			else {
+				unLuckyDays+=day+" ";
+			}
+				
+			
+		}
+		System.out.println("Lucky days:"+luckyDays);
+		System.out.println("Unlucky days:"+unLuckyDays);
 	}
 	public static int gamePlayForDays(int noOfDays, int availableBalance) 
 	{

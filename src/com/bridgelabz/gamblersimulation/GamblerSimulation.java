@@ -24,16 +24,33 @@ public class GamblerSimulation
 		System.out.println("Total stake="+TOTAL_STAKE);
 		System.out.println("Bet per game="+BET_PER_GAME);
 		int availableBalance=TOTAL_STAKE;
-		while(availableBalance<=1.5*TOTAL_STAKE && availableBalance>=0.5*TOTAL_STAKE) 
+		System.out.println("Starting Balance:"+availableBalance);
+		int noOfDays=20;
+		int totalAmount=0;
+		totalAmount=gamePlayForDays(noOfDays, availableBalance);
+		System.out.println("Amount won after "+ noOfDays+" days of play:"+totalAmount);
+
+	}
+	public static int gameResign(int availableBalance) 
+	{
+		while(availableBalance<TOTAL_STAKE*1.5 && availableBalance>0.5*TOTAL_STAKE) 
 		{
 			availableBalance=playGame(availableBalance);
+
 		}
-		if(availableBalance>1.5*TOTAL_STAKE)
-			System.out.println("Player resigned by winning 50%");
-		else
-			System.out.println("Player resigned by losing 50%");
-			
-		System.out.println("Balance available:"+availableBalance);
+		return availableBalance;
+
+	}
+	public static int gamePlayForDays(int noOfDays, int availableBalance) 
+	{
+		int totalAmount=availableBalance;
+		int amountInOneDay=0;
+		for(int day=1; day<=noOfDays;day++) 
+		{
+			amountInOneDay=gameResign(TOTAL_STAKE);
+			totalAmount+=amountInOneDay;
+		}
+		return totalAmount;
 
 	}
 

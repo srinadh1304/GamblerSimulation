@@ -13,9 +13,6 @@ public class GamblerSimulation
 		System.out.println("Starting Balance:"+availableBalance);
 		int noOfDays=20;
 		int totalAmount=0;
-		totalAmount=gamePlayForDays(noOfDays, availableBalance);
-		System.out.println("Amount won after "+ noOfDays+" days of play:"+totalAmount);
-		gameForMonth();
 		luckyAndUnluckyDay();
 
 	}
@@ -87,9 +84,17 @@ public class GamblerSimulation
 	{
 		int totalAmount=availableBalance;
 		int amountInOneDay=0;
+		String luckyDays="";
+		String unLuckyDays="";
 		for(int day=1; day<=noOfDays;day++) 
 		{
 			amountInOneDay=gameResign(TOTAL_STAKE);
+			if(amountInOneDay==TOTAL_STAKE+0.5*TOTAL_STAKE) {
+				luckyDays+=day+" ";
+			}
+			else {
+				unLuckyDays+=day+" ";
+			}
 			totalAmount+=amountInOneDay;
 		}
 		return totalAmount;

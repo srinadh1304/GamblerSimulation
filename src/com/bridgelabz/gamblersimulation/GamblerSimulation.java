@@ -11,10 +11,14 @@ public class GamblerSimulation
 	{
 		int availableBalance=TOTAL_STAKE;
 		System.out.println("Starting Balance:"+availableBalance);
-		int noOfDays=20;
+		int noOfDays=30;
 		int totalAmount=0;
 		luckyAndUnluckyDay();
 
+		totalAmount=gamePlayForDays(noOfDays, availableBalance);
+		System.out.println("Amount won after "+ noOfDays+" days of play:"+totalAmount);
+		gameForMonth();
+		
 	}
 	public static int playGame(int availableBalance)
 	{
